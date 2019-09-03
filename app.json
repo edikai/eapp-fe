@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/base/base",
+    "pages/appr/appr"
+  ],
+  "tabBar":{
+    "textColor": "#dddddd",
+    "selectedColor": "#49a9ee",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页"
+      },
+      {
+        "pagePath": "pages/base/base",
+        "name": "建材"
+      }
+    ]
+  },
+  "window": {
+    "enableWK": "YES",
+    "enableDSL": true,
+    "defaultTitle": "企业内部E应用1.1",
+    "backgroundColor": "#F5F5F9",
+    "pullRefresh": false,
+    "allowsBounceVertical": true
+  },
+  "debug": true
+}

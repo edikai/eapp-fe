@@ -1,0 +1,6 @@
+<view>
+  <form onSubmit="formSubmit">
+    <button type="primary" formType="submit">Button</button>
+  </form>
+  
+</view>
