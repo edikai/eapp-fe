@@ -7,7 +7,7 @@ page {
 .page {
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   font-size: 24rpx;
-  padding: 32rpx;
+  padding: 20rpx;
   flex: 1;
 }
 
@@ -25,7 +25,7 @@ page {
 }
 
 .page-section-demo {
-  padding: 32rpx;
+  padding: 20rpx;
 }
 
 .page-section-btns {
@@ -47,10 +47,10 @@ page {
   border-left: 1px solid #ddd;
 }
 
-button {
+/* button {
   margin-top:20rpx;
   margin-bottom:20rpx;
-}
+} */
 
 .bc_blue {
   background-color: #49A9EE;

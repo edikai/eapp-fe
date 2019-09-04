@@ -1,4 +1,4 @@
-const const_url = 'http://127.0.0.1:8080/api'
+import * as api from './../config/api.js'
 
 export function ddGetAuthCode(app) {
   let _self = this
@@ -6,7 +6,7 @@ export function ddGetAuthCode(app) {
   dd.getAuthCode({
     success:(res)=>{
       dd.httpRequest({
-        url: const_url+'/login',
+        url: api.LOGIN,
         method: 'POST',
         async: false,
         data: {
@@ -43,11 +43,11 @@ export function ddGetAuthCode(app) {
   return result
 }
 
-export function getAccessToken(app) {
+function getAccessToken(app) {
   let _self = this;
   console.log('获取access-token');
   dd.httpRequest({
-    url: const_url+'/get-token',
+    url: api.GET_ACCESS_TOKEN,
     method: 'POST',
     async: false,
     data: JSON.stringify({
@@ -73,10 +73,6 @@ export function getAccessToken(app) {
   })
 }
 
-function getUrl() {
-  return const_url
-}
-
 export {
-  getUrl
+  getAccessToken
 }

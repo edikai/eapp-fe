@@ -1,0 +1,22 @@
+<view>
+    <form onSubmit="saveMtBase" onReset="formReset">
+
+      <view class="section">
+        <view class="section__title">名{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}称：</view>
+        <input class="section__input" name="mt_type_name" placeholder="名称"/>
+      </view>
+      <view class="section">
+        <view class="section__title">度量单位：</view>
+        <input class="section__input" name="mt_type_ms_units" placeholder="度量单位"/>
+      </view>
+      <view class="section">
+        <view class="section__title">单{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}价：</view>
+        <input class="section__input" name="mt_type_price_units" placeholder="单价"/>
+      </view>
+
+      <view class="btn-area">
+        <button type="primary" formType="submit">保存</button>
+      </view>
+    </form>
+    
+</view>

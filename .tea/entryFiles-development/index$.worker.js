@@ -25,6 +25,7 @@ require('../../app');
 require('../../pages/index/index');
 require('../../pages/base/base');
 require('../../pages/appr/appr');
+require('../../pages/base-add/add');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();
 }

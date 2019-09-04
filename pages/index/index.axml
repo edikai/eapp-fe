@@ -1,14 +1,24 @@
 <view class="page">
-  <view class="page-description">建材</view>
   <view class="page-section">
-    <view class="page-section-title">vertical scroll</view>
-    <view class="page-section-title">vertical scroll</view>
+    <view class="btn-area">
+      <view class="navigator-add-btn">
+        <navigator url="/pages/base-add/add" hover-class="navigator-hover">添加</navigator>
+      </view>
+      <view class="btn-right-arrow"></view>
+    </view>
+    <view class="page-section-title page-section-inline">
+      <view class="page-section-title first-title">名称</view>
+      <view class="page-section-title">价格</view>
+    </view>
+    
     <view class="page-section-demo">
-      <scroll-view scroll-y="{{true}}" style="height: 200px;" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-        <view id="blue" class="scroll-view-item bc_blue"></view>
-        <view id="red"  class="scroll-view-item bc_red"></view>
-        <view id="yellow" class="scroll-view-item bc_yellow"></view>
-        <view id="green" class="scroll-view-item bc_green"></view>
+      <scroll-view scroll-y="{{true}}" 
+          onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+        <view a:for="{{mtList}}" class="page-section-inline">
+          <view id="blue" class="scroll-view-item first-item">{{item.mtTypeName}}</view>
+          <view id="red"  class="scroll-view-item">{{item.mtTypePriceUnits}} {{priceUnitName}}/{{item.mtTypeMsUnits}}</view>
+        </view>
+        
       </scroll-view>
     </view>
   </view>

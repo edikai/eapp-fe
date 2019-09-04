@@ -20,6 +20,7 @@ App({
     userId: '',
     userName: '',
     deptId: '',
-    accessToken: ''
+    accessToken: '',
+    priceUnitName: '元'
   }
 });

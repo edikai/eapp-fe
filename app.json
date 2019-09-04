@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/base/base",
-    "pages/appr/appr"
+    "pages/appr/appr",
+    "pages/base-add/add"
   ],
   "tabBar":{
     "textColor": "#dddddd",
@@ -11,11 +12,15 @@
     "items": [
       {
         "pagePath": "pages/index/index",
-        "name": "首页"
+        "name": "建材"
+      },
+      {
+        "pagePath": "pages/appr/appr",
+        "name": "工单"
       },
       {
         "pagePath": "pages/base/base",
-        "name": "建材"
+        "name": "统计"
       }
     ]
   },

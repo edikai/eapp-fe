@@ -1,11 +1,14 @@
-import * as login from './../../utils/login.js';
+import * as api from './../../config/api.js'
 
 let app = getApp();
 
 Page({
   data: {
+    title: '建材',
+    mtList: [],
     toView: 'red',
     scrollTop: 100,
+    priceUnitName: app.globalData.priceUnitName
   },
   upper(e) {
     console.log(e);
@@ -24,19 +27,32 @@ Page({
   },
   onLoad(query) {
     // 页面加载
+    let _self = this
     console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
     console.log(app)
     let token = app.globalData.accessToken
+    
+
     if(!token) {
-      console.log('mini project is not init.')
-      this.getAccessToken()
-    }else{
-      this.getMtBaseList()
+      let res = dd.getStorageSync({
+        key: 'accessToken',
+      })
+      if(!res.data){
+        this.getMtBaseList()
+      }else{
+        console.log('mini project is not init.')
+        this.getAccessToken()
+      }
+    }else {
+        this.getMtBaseList()
     }
+    dd.setNavigationBar({
+      title: this.data.title
+    })
   },
   onReady() {
     // 页面加载完成
-    
+    dd.stop
   },
   onShow() {
     // 页面显示
@@ -52,6 +68,8 @@ Page({
   },
   onPullDownRefresh() {
     // 页面被下拉
+    this.getMtBaseList()
+    dd.stopPullDownRefresh()
   },
   onReachBottom() {
     // 页面被拉到底部
@@ -68,7 +86,7 @@ Page({
     let _self = this;
     console.log('获取access-token');
     dd.httpRequest({
-      url: login.getUrl()+'/get-token',
+      url: api.GET_ACCESS_TOKEN,
       method: 'POST',
       data: JSON.stringify({
       }),
@@ -79,7 +97,13 @@ Page({
         console.log('get-token res: ', res)
         if(res.status == 200 && res.data.code == 200){
           app.globalData.accessToken = 'Bearer ' + res.data.token
+          dd.setStorage({
+            key: 'accessToken',
+            data: app.globalData.accessToken
+          })
           _self.ddGetAuthCode(app)
+        }else {
+          dd.alert({content: JSON.stringify(res.data)})
         }
         
       },
@@ -97,7 +121,7 @@ Page({
     dd.getAuthCode({
       success:(res)=>{
         dd.httpRequest({
-          url: login.getUrl()+'/login',
+          url: api.LOGIN,
           method: 'POST',
           async: false,
           data: {
@@ -112,6 +136,14 @@ Page({
                 app.globalData.userName = res.data.userName
                 app.globalData.deptId = res.data.deptId
                 // result = res.data
+                dd.setStorage({
+                  key: 'userInfo',
+                  data: {
+                    userId: app.globalData.userId,
+                    userName: app.globalData.userName,
+                    deptId: app.globalData.globalData
+                  }
+                })
                 _self.getMtBaseList()
               }
           },
@@ -136,7 +168,7 @@ Page({
       let _self = this;
       console.log('获取建材列表数据');
       dd.httpRequest({
-        url: login.getUrl()+'/mt-base-info/query-all',
+        url: api.GET_MT_BASE_LIST,
         method: 'POST',
         data: JSON.stringify({
         }),
@@ -146,6 +178,9 @@ Page({
           console.log("getMtBaseList = ", res)
           if(res.status == 200 && res.data.code == 200){
             console.log(res)
+            this.setData({
+              mtList: res.data.list
+            })
           }else if(res.status == 200) {
             console.log(res)
             let msg = res.data.msg

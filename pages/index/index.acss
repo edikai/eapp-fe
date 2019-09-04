@@ -1,0 +1,59 @@
+
+.page-section-demo {
+  padding: 20rpx;
+  height: 100%;
+}
+/* 标题 */
+.page-section-title view {
+  background-color: #49a9ee;
+  width: 39%;
+  color: #fff;
+  font-size: 20px;
+}
+/* 标题行显示 */
+.page-section-inline view {
+  display: inline-block;
+}
+/* 竖虚线 */
+.first-title {
+  border-right: 1px dashed #fff;
+}
+/* 竖虚线 */
+.first-item {
+  border-right: 1px dashed #000;
+}
+
+/* 具体列表数据 */
+.scroll-view-item {
+  padding: 16rpx 32rpx;
+  width: 39%;
+  font-size: 18px;
+}
+
+/* 添加按钮整个区域 */
+.btn-area {
+  margin-left: 30rpx;
+  width: 80%;
+  height: 40rpx;
+  padding: 16rpx 32rpx;
+  background-color: #49a9ee;
+  font-size: 15px;
+  color: #fff;
+}
+
+/* 添加的文字所占区域 */
+.navigator-add-btn {
+  display: inline-block;
+  width: 95%;
+}
+
+/* 右箭头 */
+.btn-right-arrow {
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
