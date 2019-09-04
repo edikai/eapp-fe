@@ -47,27 +47,6 @@ page {
   border-left: 1px solid #ddd;
 }
 
-/* button {
-  margin-top:20rpx;
-  margin-bottom:20rpx;
-} */
-
-.bc_blue {
-  background-color: #49A9EE;
-}
-
-.bc_red {
-  background-color: #F04134;
-}
-
-.bc_yellow {
-  background-color: #FFBF00;
-}
-
-.bc_green {
-  background-color: #00A854;
-}
-
 .form-row {
   display: flex;
   align-items: center;
@@ -102,4 +81,28 @@ page {
   padding: 4rpx 0;
   border: 0;
   line-height: 1;
+}
+
+/* form表单 标题输入框样式 */
+.section{
+  line-height: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+}
+
+/* 标题 */
+.section__title{
+  display:inline;
+  margin-right: 10rpx;
+  width: 200rpx;
+  text-align: right;
+  padding: 10rpx;
+  font-size: 18px;
+}
+
+.section__input {
+    padding: 15rpx;
 }

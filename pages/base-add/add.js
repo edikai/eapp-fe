@@ -40,8 +40,15 @@ Page({
                         content: res.data.msg,
                         buttonText: '确定',
                         success: () => {
-                            dd.redirectTo({
-                                url: '/pages/index/index?date='+new Date()
+                            dd.switchTab({
+                                url: '/pages/index/index?date='+new Date(),
+                                success: () => {
+                                    var pages = getCurrentPages();//获取当前打开的页面栈，返回为数组，索引顺序为打开的顺序
+                                    console.log('pages.length=', pages.length)
+                                    var prePages = pages[pages.length - 1];//获取到上一个页面对象
+                                    console.log(prePages)
+                                    prePages.refresh();//执行上一个页面对象中的刷新数据方法
+                                }
                             })
                         },
                     })

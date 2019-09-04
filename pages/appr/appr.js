@@ -1,60 +1,18 @@
-let app = getApp();
+import * as api from './../../config/api.js'
 
-//替换成开发者后台设置的安全域名
-let url = "http://127.0.0.1:8080";
+let app = getApp();
 
 Page({
     data:{
         corpId: '',
-        authCode:'',
         userId:'',
         userName:'',
         deptId:'',
-        hideList: true,
+        space: '\xa0'
     },
     onReady() {
     // 页面加载
-    dd.getAuthCode({
-            success:(res)=>{
-                this.setData({
-                    authCode:res.authCode
-                })
-                dd.httpRequest({
-                    url: url+'/login',
-                    method: 'POST',
-                    data: {
-                        authCode: res.authCode
-                    },
-                    dataType: 'json',
-                    success: (res) => {
-                        // dd.alert({content: "step2"});
-                        console.log('success----',res)
-                        let userId = res.data.result.userId;
-                        let userName = res.data.result.userName;
-                        let deptId = res.data.result.deptId;
-                        this.setData({
-                            userId:userId,
-                            userName:userName,
-                            deptId:deptId
-                        })
-                    },
-                    fail: (res) => {
-                        console.log("httpRequestFail---",res)
-                       dd.alert({content: JSON.stringify(res)});
-                    },
-                    complete: (res) => {
-                        dd.hideLoading();
-                    }
-                    
-                });
-            },
-            fail: (err)=>{
-                dd.alert({content: "step3"});
-                dd.alert({
-                    content: JSON.stringify(err)
-                })
-            }
-        })
+   
     },
     formSubmit: function(e) {
       let that = this;

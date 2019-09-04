@@ -1,34 +1,34 @@
 <view>
     <form onSubmit="formSubmit" onReset="formReset">
 
-      <view class="section">
-        <view class="section__title">使用时间</view>
-        <input name="use_date" placeholder="使用时间"/>
-      </view>
-      <view class="section">
-        <view class="section__title">建材</view>
-        <input name="mt_base_id" placeholder="建材"/>
-      </view>
-      <view class="section">
-        <view class="section__title">单价</view>
-        <text>{{priceUnit}}</text>
-      </view>
-      <view class="section">
-        <view class="section__title">数量</view>
-        <input name="number" placeholder="数量"/>
-      </view>
-      <view class="section">
-        <view class="section__title">总金额</view>
-        <input name="number" value="{{totalPrice}}"/>
-      </view>
-      <view class="section">
-        <view class="section__title">说明</view>
-        <input name="number" value=""/>
-      </view>
+        <view class="section">
+            <view class="section__title">使用时间：</view>
+            <input class="section__input" name="use_date" placeholder="使用时间"/>
+        </view>
+        <view class="section">
+            <view class="section__title">建{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}材：</view>
+            <input class="section__input" name="mt_base_id" placeholder="建材"/>
+        </view>
+        <view class="section">
+            <view class="section__title">单{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}价：</view>
+            <text>{{priceUnit}}</text>
+        </view>
+        <view class="section">
+            <view class="section__title">数{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}量：</view>
+            <input class="section__input" name="number" placeholder="数量"/>
+        </view>
+        <view class="section">
+            <view class="section__title">总{{space}}{{space}}金{{space}}{{space}}额：</view>
+            <input class="section__input" name="number" value="{{totalPrice}}"/>
+        </view>
+        <view class="section">
+            <view class="section__title">说{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}明：</view>
+            <textarea name="desc" auto-height="true" placeholder="Input multiple lines"></textarea>
+        </view>
 
-      <view class="btn-area">
+        <view class="btn-area">
         <button type="primary" formType="submit">发起审批</button>
-      </view>
+        </view>
     </form>
     
 </view>
