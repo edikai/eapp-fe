@@ -3,31 +3,43 @@
 
         <view class="section">
             <view class="section__title">使用时间：</view>
-            <input class="section__input" name="use_date" placeholder="使用时间"/>
+            <input class="section__input" name="mtWoUseDate" onFocus="inputUseDate" placeholder="使用时间" value="{{mtWoUseDate}}"/>
         </view>
         <view class="section">
-            <view class="section__title">建{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}材：</view>
-            <input class="section__input" name="mt_base_id" placeholder="建材"/>
+            <!-- <input class="section__input" name="mtBaseId" placeholder="建材"/> -->
+            <view a:if="{{mtBaseList}}">
+                <picker onChange="bindPickerChange" value="{{mtBaseIdx}}" range="{{mtBaseList}}" range-key="mtTypeName">
+                    <view class="row">
+                        <view class="section__title">建{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}材：</view>
+                        <view class="row-view-input">
+                            <view class="row-extra">{{mtBaseList[mtBaseIdx].mtTypeName}}</view>
+                            <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+                        </view>
+                    </view>
+                </picker>
+            </view>
+            <!--  -->
         </view>
         <view class="section">
             <view class="section__title">单{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}价：</view>
-            <text>{{priceUnit}}</text>
+            <text>{{priceUnit}}{{space+priceUnitName}}</text>
         </view>
         <view class="section">
             <view class="section__title">数{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}量：</view>
-            <input class="section__input" name="number" placeholder="数量"/>
+            <input class="section__input" name="mtBaseAmount" placeholder="数量" onBlur="calTotalPrice"/>
         </view>
         <view class="section">
             <view class="section__title">总{{space}}{{space}}金{{space}}{{space}}额：</view>
-            <input class="section__input" name="number" value="{{totalPrice}}"/>
+            <input class="section__input" name="mtWoTotalPrice" value="{{mtWoTotalPrice}}"
+                style="readonly: readonly;"/>
         </view>
-        <view class="section">
+        <view class="section section-textarea">
             <view class="section__title">说{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}明：</view>
-            <textarea name="desc" auto-height="true" placeholder="Input multiple lines"></textarea>
+            <textarea class="section-input-area" name="mtWoDesc" auto-height placeholder="工单说明"></textarea>
         </view>
 
         <view class="btn-area">
-        <button type="primary" formType="submit">发起审批</button>
+            <button type="primary" formType="submit">发起审批</button>
         </view>
     </form>
     

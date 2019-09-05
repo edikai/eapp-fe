@@ -105,4 +105,5 @@ page {
 
 .section__input {
     padding: 15rpx;
+    width: 450rpx;
 }

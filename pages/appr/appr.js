@@ -1,4 +1,5 @@
 import * as api from './../../config/api.js'
+import * as dateUtil from './../../utils/dateUtil.js'
 
 let app = getApp();
 
@@ -8,65 +9,129 @@ Page({
         userId:'',
         userName:'',
         deptId:'',
-        space: '\xa0'
+        priceUnit: 0,
+        priceUnitName: '',
+        space: '\xa0',
+        mtBaseIdx: 0,
+        mtTypeName: '',
+
+        mtWoUseDate: '',
+        mtBaseList: [],
+        mtBaseId: 0,
+        mtWoTotalPrice: 0,
     },
     onReady() {
-    // 页面加载
-   
-    },
-    formSubmit: function(e) {
-      let that = this;
-      let form = e.detail.value;
-      console.log('form发生了submit事件，携带数据为：', e.detail.value);
-      dd.httpRequest({
-                    url: url+'/processinstance/start',
-                    method: 'POST',
-                    data: JSON.stringify({
-                        originatorUserId: that.data.userId,
-                        deptId: that.data.deptId,
-                        textForms: [
-                          {name: "[\"开始时间\",\"结束时间\"]",value:"[\"2018-08-21\",\"2018-08-25\"]"},
-                          {name: "出差人数",value:form.number},
-                          {name: "出差金额",value:form.money},
-                          {name: "出差同伴",value:form.people},
-                          {name: "交通工具",value:form.vehicle},
-                          {name: "出差事由",value:form.reason}
-                        ],
-                        pictureForms:[{name:"图片",value:[form.picture]}],
-                        detailForms: [
-                          {
-                            name:"行程明细",
-                            textForms:[
-                              {name:"出差地点",value:form.detail_address}],
-	                          pictureForms:[
-                              {name:"图片",value:[form.detail_picture]}]}]
-                    }),
-                    headers:{'Content-Type': 'application/json'},
-                    dataType: 'json',
-                    success: (res) => {
-                        dd.alert({content: "审批实例id：" + JSON.stringify(res)});
-                    },
-                    fail: (res) => {
-                        console.log("httpRequestFail---",res)
-                       dd.alert({content: JSON.stringify(res)});
-                    },
-                    complete: (res) => {
-                        dd.hideLoading();
-                    }
-                    
-                });
+        // 页面加载
+        let _self = this
+        dd.getStorage({
+            key: 'mtBaseList',
+            success: (res) => {
+                console.log(res)
+                this.setData({
+                    mtBaseList: res.data,
+                })
+                _self._initPriceUnit(_self.data.mtBaseList[0])
+            }
+        })
+        this.setData({
+            corpId: app.globalData.corpId,
+            userId: app.globalData.userId,
+            userName: app.globalData.userName,
+            deptId: app.globalData.deptId
+        })
     },
     onLoad(){
-
-        let _this = this;
-
+        let _self = this;
         this.setData({
             corpId: app.globalData.corpId
         })
-        
-        //dd.alert({content: "step1"});
-         
-        
-        
-    }
+    },
+    inputUseDate: function(e) {
+        let _self = this
+        console.log(e)
+        let currentDate = new Date()
+        console.log(currentDate.Format(dateUtil.DATE_FORMAT_DAY))
+        dd.datePicker({
+            format: 'yyyy-MM-dd',
+            currentDate: currentDate.Format(dateUtil.DATE_FORMAT_DAY),
+            success: (res) => {
+                _self.setData({
+                    mtWoUseDate: res.date
+                })
+            },
+        });
+    },
+    bindPickerChange(e) {
+        console.log('picker发送选择改变，携带值为', e);
+        console.log(this.data.mtBaseList[e.detail.value])
+        this.setData({
+            mtBaseIdx: e.detail.value
+        })
+        this._initPriceUnit(this.data.mtBaseList[e.detail.value])
+    },
+    _initPriceUnit: function(mtBaseInfo) {
+        this.setData({
+            mtBaseId: mtBaseInfo.id,
+            mtTypeName: mtBaseInfo.mtTypeName,
+            priceUnit: mtBaseInfo.mtTypePriceUnits,
+            priceUnitName: app.globalData.priceUnitName+'/'+mtBaseInfo.mtTypeMsUnits
+        })
+    },
+    calTotalPrice: function(e) {
+        let _self = this
+        this.setData({
+            mtWoTotalPrice: _self.data.priceUnit * e.detail.value
+        })
+    },
+    formSubmit: function(e) {
+        let _self = this;
+        let form = e.detail.value;
+        console.log('form发生了submit事件，携带数据为：', e.detail.value);
+        dd.httpRequest({
+            url: api.MT_WO_SAVE_AND_START,
+            method: 'POST',
+            data: JSON.stringify({
+                mtWoUseDate: _self.data.mtWoUseDate,
+                mtBaseId: _self.data.mtBaseId,
+                priceUnit: _self.data.priceUnit,
+                mtWoTotalPrice: _self.data.mtWoTotalPrice,
+                mtBaseAmount: form.mtBaseAmount,
+                mtWoDesc: form.mtWoDesc,
+
+                ddUserId: _self.data.userId,
+                ddDeptId: _self.data.deptId,
+                ddCorpId: _self.data.corpId,
+                createBy: _self.data.userName,
+                textForms: [
+                    {name: "使用时间", value: _self.data.mtWoUseDate},
+                    {name: "建材", value: _self.data.mtTypeName},
+                    {name: "单价", value: _self.data.priceUnit},
+                    {name: "数量", value: form.mtBaseAmount},
+                    {name: "总金额", value: _self.data.mtWoTotalPrice},
+                    {name: "说明", value: form.mtWoDesc}
+                ]
+            }),
+            headers:{'Content-Type': 'application/json', 'Authorization': app.globalData.accessToken},
+            dataType: 'json',
+            success: (res) => {
+                if(res.status == 200 && res.data.code == 200){
+                    if(res.data.code == 200){ // 成功
+
+                    }else {
+                        dd.alert({content: "失败："+JSON.stringify(res.data)})
+                    }
+                }else {
+                    dd.alert({content: "审批实例id：" + JSON.stringify(res)});
+                }
+            },
+            fail: (res) => {
+                console.log("httpRequestFail---",res)
+                dd.alert({content: JSON.stringify(res)});
+            },
+            complete: (res) => {
+                dd.hideLoading();
+            }
+            
+        });
+    },
 })
