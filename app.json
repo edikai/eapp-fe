@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/base/base",
+    "pages/stats/stats",
     "pages/appr/appr",
     "pages/base-add/add"
   ],
@@ -19,7 +19,7 @@
         "name": "工单"
       },
       {
-        "pagePath": "pages/base/base",
+        "pagePath": "pages/stats/stats",
         "name": "统计"
       }
     ]

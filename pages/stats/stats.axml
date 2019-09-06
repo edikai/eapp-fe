@@ -1,0 +1,18 @@
+<view>
+    <view class="section">
+        <view class="section__title">月份：</view>
+        <input class="section__input" name="selectMonth" onFocus="selectMonth" onConfirm="getMtWoList" placeholder="月份" value="{{selectMonth}}"/>
+    </view>
+    
+    <view class="page-section-demo">
+      <scroll-view scroll-y="{{true}}" 
+          onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+        <view a:for="{{mtMoStatsList}}" class="page-section-inline">
+          <view id="blue" class="scroll-view-item first-item">{{item.mtTypeName}}</view>
+          <view id="red"  class="scroll-view-item">{{item.totalPrice}} {{priceUnitName}}</view>
+        </view>
+        
+      </scroll-view>
+    </view>
+
+</view>

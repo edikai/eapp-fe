@@ -6,9 +6,10 @@ export const GET_ACCESS_TOKEN = API_BASE_URL + 'get-token'  //后台获取access
 export const GET_MT_BASE_LIST = API_BASE_URL + 'mt-base-info/query-all'  //后台获取所有建材
 export const SAVE_MT_BASE_INFO = API_BASE_URL + 'mt-base-info/save'  //后台保存建材
 
-const MT_WO_SAVE_AND_START = API_BASE_URL + 'mt-work-order/save-and-start'  // 工单保存并发起审批
+export const MT_WO_SAVE_AND_START = API_BASE_URL + 'mt-work-order/save-and-start'  // 工单保存并发起审批
+export const MT_WO_STATS_LIST_MONTH = API_BASE_URL + 'mt-work-order/stats-list-month'   // 工单按月汇总
 
-export {
-    MT_WO_SAVE_AND_START
-}
+// export {
+//     MT_WO_SAVE_AND_START
+// }
 
