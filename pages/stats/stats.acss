@@ -1,37 +1,23 @@
-.row{
-    height: 60rpx;
+@import "/css/table.acss";
+@import "/css/common.acss";
+
+.search-condition {
+    /* background-color: cornflowerblue; */
+}
+
+.search_title {
+    padding: 1rpx 32rpx;
     line-height: 60rpx;
-}
-.section__middle{
-  line-height: 100rpx;
-  height: 100rpx;
-  font-size: 50;
-  display: flex;
-  align-items: center;
-  margin-bottom: 40rpx;
-}
-.section__title{
-  display:inline;
-  margin-right: 10rpx;
-}
-.section{
-  line-height: 40rpx;
-  height: 40rpx;
-  display: flex;
-  align-items: center;
-  margin-bottom: 40rpx;
+    height: 60rpx;
 }
 
-.sectionV2{
-  line-height: 80rpx;
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  margin-top: 80rpx;
+.stats-sel-mon-name {
+    display: inline-block;
+    width: 500rpx;
 }
 
-.line{
-  width: 740rpx;
-  border-bottom: solid 1px red;
-  margin-bottom: 80rpx
+/* 箭头颜色 */
+.btn-right-arrow {
+    border-top: 4rpx solid #000;
+    border-right: 4rpx solid #000;
 }

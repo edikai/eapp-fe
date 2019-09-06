@@ -2,8 +2,17 @@
     <form onSubmit="formSubmit" onReset="formReset">
 
         <view class="section">
+            <!-- <view class="section__title">使用时间：</view>
+            <input class="section__input" name="mtWoUseDate" onFocus="inputUseDate" placeholder="使用时间" value="{{mtWoUseDate}}"/> -->
             <view class="section__title">使用时间：</view>
-            <input class="section__input" name="mtWoUseDate" onFocus="inputUseDate" placeholder="使用时间" value="{{mtWoUseDate}}"/>
+            <!-- <view class="stats-sel-mon-name">
+                <view class="section__title search_title">月{{space+space+space+space+space+space+space}}份：</view>
+            </view> -->
+            <view class="date-condition row-view-input" onTap="inputUseDate">
+                <view class="date-value-condition">{{mtWoUseDate}}</view>
+                <view class="btn-right-arrow"></view>
+            </view>
+
         </view>
         <view class="section">
             <!-- <input class="section__input" name="mtBaseId" placeholder="建材"/> -->
@@ -13,7 +22,8 @@
                         <view class="section__title">建{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}材：</view>
                         <view class="row-view-input">
                             <view class="row-extra">{{mtBaseList[mtBaseIdx].mtTypeName}}</view>
-                            <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+                            <!-- <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" /> -->
+                            <view class="btn-right-arrow"></view>
                         </view>
                     </view>
                 </picker>

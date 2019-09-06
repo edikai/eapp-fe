@@ -1,3 +1,4 @@
+@import "/css/common.acss";
 
 .section-textarea {
     padding-bottom: 10rpx;
@@ -50,3 +51,20 @@
     /* float: right;
     padding-top: 10rpx; */
 }
+/*------------------------------------------------*/
+/* 箭头颜色 */
+.btn-right-arrow {
+    border-top: 4rpx solid #CCCCCC;
+    border-right: 4rpx solid #CCCCCC;
+}
+
+/* .search_title {
+    padding: 1rpx 32rpx;
+    line-height: 60rpx;
+    height: 60rpx;
+}
+
+.stats-sel-mon-name {
+    display: inline-block;
+    width: 500rpx;
+} */

@@ -9,13 +9,14 @@ Page({
         userId:'',
         userName:'',
         deptId:'',
+        space: '\xa0',
+
         priceUnit: 0,
         priceUnitName: '',
-        space: '\xa0',
         mtBaseIdx: 0,
         mtTypeName: '',
 
-        mtWoUseDate: '',
+        mtWoUseDate: '--请选择--',
         mtBaseList: [],
         mtBaseId: 0,
         mtWoTotalPrice: 0,
@@ -44,6 +45,21 @@ Page({
         let _self = this;
         this.setData({
             corpId: app.globalData.corpId
+        })
+    },
+    onHide() {
+        // 页面隐藏
+        console.log('onHide.............')
+        this.setData({
+            mtWoUseDate: '--请选择--',
+            mtMoStatsList: [],
+            mtWoTotalPrice: 0,
+            mtBaseId: 0,
+
+            priceUnit: 0,
+            priceUnitName: '',
+            mtBaseIdx: 0,
+            mtTypeName: '',
         })
     },
     inputUseDate: function(e) {

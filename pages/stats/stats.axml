@@ -1,9 +1,23 @@
-<view>
-    <view class="section">
-        <view class="section__title">月份：</view>
-        <input class="section__input" name="selectMonth" onFocus="selectMonth" onConfirm="getMtWoList" placeholder="月份" value="{{selectMonth}}"/>
+<view  class="page">
+    <view class="search-condition">
+        <!-- <view class="section__title">月{{space+space+space+space+space+space+space}}份：</view>
+        <input class="section__input" name="selectMonth" onFocus="selectMonth" placeholder="月份" value="{{selectMonth}}"/> -->
+
+        <view class="">
+            <view class="stats-sel-mon-name">
+                <view class="section__title search_title">月{{space+space+space+space+space+space+space}}份：</view>
+            </view>
+            <view class="date-condition" onTap="selectMonth">
+                <view class="date-value-condition">{{selectMonth}}</view>
+                <view class="btn-right-arrow"></view>
+            </view>
+        </view>
     </view>
     
+    <view class="page-section-title page-section-inline">
+      <view class="page-section-title first-title">名称</view>
+      <view class="page-section-title">总金额</view>
+    </view>
     <view class="page-section-demo">
       <scroll-view scroll-y="{{true}}" 
           onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">

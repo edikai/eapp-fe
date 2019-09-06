@@ -1,0 +1,23 @@
+
+.search-condition {
+    /* background-color: cornflowerblue; */
+    font-size: 30rpx;
+}
+
+.date-condition {
+    display: inline-block;
+    /* background-color: #ffffff; */
+}
+
+.date-value-condition {
+    display: inline-block;
+}
+/* 右箭头 */
+.btn-right-arrow {
+    width: 16rpx;
+    height: 16rpx;
+    border-top: 4rpx solid #ffffff;
+    border-right: 4rpx solid #ffffff;
+    transform: rotate(45deg);
+    display: inline-block;
+}
