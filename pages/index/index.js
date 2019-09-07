@@ -32,6 +32,7 @@ Page({
         console.log(app)
         let token = app.globalData.accessToken
 
+        console.log("global token = " + token)
         if(token) {
             this.refresh()
             return
@@ -40,7 +41,9 @@ Page({
         let res = dd.getStorageSync({
             key: 'accessToken',
         })
-        if(!res.data){
+        let isNotNull = res.data != null
+        if(isNotNull){
+            app.globalData.accessToken = res.data
             this.refresh()
         }else{
             console.log('mini project is not init.')
@@ -184,7 +187,7 @@ Page({
                     })
                 }else if(res.status == 200) {
                     let msg = res.data.msg
-                    conso.log(msg)
+                    console.log(msg)
                     dd.alert(msg);
                 }else {
                     JSON.stringify(res)
