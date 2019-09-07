@@ -25,7 +25,7 @@ self.requirePlugin = AFAppX.requirePlugin;
 function success() {
 require('../../app');
 require('../../pages/index/index');
-require('../../pages/base/base');
+require('../../pages/stats/stats');
 require('../../pages/appr/appr');
 require('../../pages/base-add/add');
 }
