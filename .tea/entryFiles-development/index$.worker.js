@@ -22,10 +22,11 @@ self.requirePlugin = AFAppX.requirePlugin;
 
 function success() {
 require('../../app');
-require('../../pages/index/index');
+require('../../pages/index');
 require('../../pages/stats/stats');
 require('../../pages/appr/appr');
-require('../../pages/base-add/add');
+require('../../pages/mt-base/add/add');
+require('../../pages/mt-base/list/list');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();
 }
