@@ -1,0 +1,23 @@
+/* @import "/util/lifecycle.acss"; */
+@import '/utils/pages/grid/index.acss';
+@import '/utils/pages/items/index.acss';
+
+.slogon {
+  text-align: center;
+}
+
+.logo {
+  margin-top: 60rpx;
+  width: 90px;
+  height: 90px;
+}
+
+.info {
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+}
+
+.desc {
+  font-size: 28rpx;
+  color: #888;
+}

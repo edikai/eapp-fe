@@ -1,36 +1,25 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/stats/stats",
-    "pages/appr/appr",
-    "pages/base-add/add"
-  ],
-  "tabBar":{
-    "textColor": "#dddddd",
-    "selectedColor": "#49a9ee",
-    "backgroundColor": "#ffffff",
-    "items": [
-      {
-        "pagePath": "pages/index/index",
-        "name": "建材"
-      },
-      {
-        "pagePath": "pages/appr/appr",
-        "name": "工单"
-      },
-      {
-        "pagePath": "pages/stats/stats",
-        "name": "统计"
-      }
-    ]
-  },
-  "window": {
-    "enableWK": "YES",
-    "enableDSL": true,
-    "defaultTitle": "企业内部E应用1.1",
-    "backgroundColor": "#F5F5F9",
-    "pullRefresh": false,
-    "allowsBounceVertical": true
-  },
-  "debug": true
+    "pages": [
+        "pages/index",
+        "pages/stats/stats",
+        "pages/appr/appr",
+        "pages/mt-base/add/add",
+        "pages/mt-base/list/list"
+    ],
+    "tabBar":{
+        "textColor": "#dddddd",
+        "selectedColor": "#49a9ee",
+        "backgroundColor": "#ffffff",
+        "items": [
+        ]
+    },
+    "window": {
+        "enableWK": "YES",
+        "enableDSL": true,
+        "defaultTitle": "建材小工具",
+        "backgroundColor": "#F5F5F9",
+        "pullRefresh": false,
+        "allowsBounceVertical": true
+    },
+    "debug": true
 }

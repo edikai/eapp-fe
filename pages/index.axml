@@ -1,0 +1,26 @@
+<!-- <import src="/util/lifecycle.axml"/> -->
+<import src="/utils/pages/grid/index.axml"/>
+<import src="/utils/pages/items/index.axml"/>
+
+<view class="container" key="container">
+    <view class="slogon">
+        <!-- <image src="/image/logo.png" mode="scaleToFill" class="logo"/> -->
+        <image src="/img/icon.jpg" mode="scaleToFill" class="logo"/>
+        <view class="info">
+            <text class="desc">为您的工程建材管理提供一点小小的帮助...</text>
+        </view>
+    </view>
+    <template is="grid" data="{{...arr}}"/>
+</view>
+
+<template
+        is="items"
+        key="items"
+        data="{{hidden: hidden, list: arr.list[curIndex], onChildItemTap: arr.onChildItemTap, animMaskData, animContentData}}"
+/>
+
+<!-- <template
+        key="lifecycle"
+        is="lifecycle"
+        a:if="{{debug}}"
+/> -->

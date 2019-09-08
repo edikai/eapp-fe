@@ -37,13 +37,13 @@ Page({
     },
     onHide() {
         // 页面隐藏
-        console.log('onHide..stats...........')
-        let pages = getCurrentPages();
-        console.log(pages.length)
-        this.setData({
-            selectMonth: '--请选择--',
-            mtMoStatsList: [],
-        })
+        // console.log('onHide..stats...........')
+        // let pages = getCurrentPages();
+        // console.log(pages.length)
+        // this.setData({
+        //     selectMonth: '--请选择--',
+        //     mtMoStatsList: [],
+        // })
     },
     onUnload() {
         // 页面被关闭
@@ -72,6 +72,7 @@ Page({
     getMtWoList: function(e) {
         let _self = this;
         console.log('开始查询汇总数据');
+        console.log(app)
         dd.httpRequest({
             url: api.MT_WO_STATS_LIST_MONTH,
             method: 'GET',
