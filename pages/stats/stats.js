@@ -37,7 +37,9 @@ Page({
     },
     onHide() {
         // 页面隐藏
-        console.log('onHide.............')
+        console.log('onHide..stats...........')
+        let pages = getCurrentPages();
+        console.log(pages.length)
         this.setData({
             selectMonth: '--请选择--',
             mtMoStatsList: [],

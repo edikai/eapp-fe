@@ -36,7 +36,7 @@
         </view>
         <view class="section">
             <view class="section__title">数{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}量：</view>
-            <input class="section__input" name="mtBaseAmount" placeholder="数量" onBlur="calTotalPrice"/>
+            <input class="section__input" name="mtBaseAmount" placeholder="数量" onBlur="calTotalPrice" value=""/>
         </view>
         <view class="section">
             <view class="section__title">总{{space}}{{space}}金{{space}}{{space}}额：</view>
@@ -45,7 +45,7 @@
         </view>
         <view class="section section-textarea">
             <view class="section__title">说{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}{{space}}明：</view>
-            <textarea class="section-input-area" name="mtWoDesc" auto-height placeholder="工单说明"></textarea>
+            <textarea class="section-input-area" name="mtWoDesc" auto-height placeholder="工单说明">{{mtWoDesc}}</textarea>
         </view>
 
         <view class="btn-area">

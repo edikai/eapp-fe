@@ -20,6 +20,8 @@ Page({
         mtBaseList: [],
         mtBaseId: 0,
         mtWoTotalPrice: 0,
+        mtBaseAmount: null,
+        mtWoDesc: '',
     },
     onReady() {
         // 页面加载
@@ -49,10 +51,11 @@ Page({
     },
     onHide() {
         // 页面隐藏
-        console.log('onHide.............')
+        console.log('onHide..appr.js...........')
+        let pages = getCurrentPages();
+        console.log(pages.length)
         this.setData({
             mtWoUseDate: '--请选择--',
-            mtMoStatsList: [],
             mtWoTotalPrice: 0,
             mtBaseId: 0,
 
@@ -60,7 +63,10 @@ Page({
             priceUnitName: '',
             mtBaseIdx: 0,
             mtTypeName: '',
+            mtBaseAmount: null,
+            mtWoDesc: '',
         })
+        this._initPriceUnit(this.data.mtBaseList[0])
     },
     inputUseDate: function(e) {
         let _self = this
@@ -103,6 +109,7 @@ Page({
         let _self = this;
         let form = e.detail.value;
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
+        console.log(_self.data)
         dd.httpRequest({
             url: api.MT_WO_SAVE_AND_START,
             method: 'POST',
