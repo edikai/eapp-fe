@@ -1,4 +1,5 @@
 import * as api from '/config/api'
+import * as dateUtil from'/utils/dateUtil'
 
 let app = getApp();
 
@@ -106,12 +107,13 @@ Page({
         let _self = this
         console.log(e)
         let { mtBaseId} = e.target.dataset
+        let today = new Date()
         dd.httpRequest({
             url: api.MT_WO_GET_LIST_ALL,
             method: 'GET',
             data: {
                 mtBaseId: mtBaseId,
-                nearlyHalfYear: new Date()
+                nearlyHalfYear: today.format(dateUtil.DATE_FORMAT_DAY)
             },
             headers:{'Authorization': app.globalData.accessToken},
             dataType: 'json',

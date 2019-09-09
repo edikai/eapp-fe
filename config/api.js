@@ -1,6 +1,6 @@
 // const API_BASE_URL = 'http://192.168.1.110:80/api/'; // 测试地址
-// const API_BASE_URL = 'http://127.0.0.1:80/api/'; // 测试地址
-const API_BASE_URL = 'http://49.235.132.193:80/api/'; // 正式地址
+const API_BASE_URL = 'http://127.0.0.1:80/api/'; // 测试地址
+// const API_BASE_URL = 'http://49.235.132.193:80/api/'; // 正式地址
 
 export const LOGIN = API_BASE_URL + 'login'  // 钉钉免登
 export const GET_ACCESS_TOKEN = API_BASE_URL + 'get-token'  //后台获取accessToken

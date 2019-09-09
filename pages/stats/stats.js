@@ -36,7 +36,7 @@ Page({
         let currentDate = new Date()
         let dd_date = dd.datePicker({
             format: 'yyyy-MM',
-            currentDate: currentDate.Format(dateUtil.DATE_FORMAT_MONTH),
+            currentDate: currentDate.format(dateUtil.DATE_FORMAT_MONTH),
             success: (res) => {
                 if(res.date) { // 取消不查询数据
                      _self.setData({
