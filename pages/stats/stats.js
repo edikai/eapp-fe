@@ -9,11 +9,13 @@ Page({
         userId:'',
         userName:'',
         deptId:'',
+        pageInit: true,
         space: '\xa0',
         priceUnitName: '',
 
         selectMonth: '--请选择--',
-        mtMoStatsList: []
+        mtWoStatsList: [],
+        mtWoStatsSum: 0
     },
     onReady() {
         // 页面加载
@@ -28,28 +30,7 @@ Page({
             priceUnitName: app.globalData.priceUnitName,
         })
     },
-    onLoad(){
-        console.log('onLoad.......')
-    },
-    onShow() {
-        // 页面显示
-        console.log('onShow.............')
-    },
-    onHide() {
-        // 页面隐藏
-        // console.log('onHide..stats...........')
-        // let pages = getCurrentPages();
-        // console.log(pages.length)
-        // this.setData({
-        //     selectMonth: '--请选择--',
-        //     mtMoStatsList: [],
-        // })
-    },
-    onUnload() {
-        // 页面被关闭
-        console.log('onUnload.............')
-    },
-    selectMonth: function(e) {
+    selectMonth(e) {
         let _self = this
         console.log(e)
         let currentDate = new Date()
@@ -59,17 +40,17 @@ Page({
             success: (res) => {
                 if(res.date) { // 取消不查询数据
                      _self.setData({
-                        selectMonth: res.date
+                        selectMonth: res.date,
+                        pageInit: false,
                     })
                     _self.getMtWoList()
                 }
                
             },
         });
-        console.log(dd_date)
     },
     
-    getMtWoList: function(e) {
+    getMtWoList(e) {
         let _self = this;
         console.log('开始查询汇总数据');
         console.log(app)
@@ -85,9 +66,10 @@ Page({
             success: (res) => {
                 if(res.status == 200 && res.data.code == 200){
                     if(res.data.code == 200){ // 成功
-                        console.log(res.data.list)
+                        console.log(res.data)
                         _self.setData({
-                            mtMoStatsList: res.data.list
+                            mtWoStatsList: res.data.list,
+                            mtWoStatsSum: res.data.sum
                         })
                     }else {
                         dd.alert({content: "失败："+JSON.stringify(res.data)})

@@ -21,12 +21,18 @@
     <view class="page-section-demo">
       <scroll-view scroll-y="{{true}}" 
           onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-        <view a:for="{{mtMoStatsList}}" class="page-section-inline">
-          <view id="blue" class="scroll-view-item first-item">{{item.mtTypeName}}</view>
-          <view id="red"  class="scroll-view-item">{{item.totalPrice}} {{priceUnitName}}</view>
-        </view>
         
+        <view a:if="{{!pageInit && mtWoStatsList.length==0}}">未查询到数据</view>
+        <view a:elif="{{!pageInit && mtWoStatsList.length > 0}}" a:for="{{mtWoStatsList}}" class="page-section-inline">
+            <view id="blue" class="scroll-view-item first-item">{{item.mtTypeName}}</view>
+            <view id="red"  class="scroll-view-item">{{item.totalPrice}} {{priceUnitName}}</view>
+        </view>
       </scroll-view>
+    </view>
+
+    <view a:if="{{mtWoStatsSum != 0}}" class="page-section-title page-section-inline">
+        <view class="page-section-title first-title">合计金额</view>
+        <view class="page-section-title">{{mtWoStatsSum}}</view>
     </view>
 
 </view>

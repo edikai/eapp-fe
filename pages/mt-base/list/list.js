@@ -6,9 +6,9 @@ Page({
     data: {
         title: '建材',
         mtList: [],
-        toView: 'red',
         scrollTop: 100,
-        priceUnitName: app.globalData.priceUnitName
+        priceUnitName: app.globalData.priceUnitName,
+        selectedRow: ''  // selected-row
     },
     upper(e) {
         console.log(e);
@@ -101,6 +101,108 @@ Page({
             }
             
         });
+    },
+    deleteInit: function(e) {
+        let _self = this
+        console.log(e)
+        let { mtBaseId} = e.target.dataset
+        dd.httpRequest({
+            url: api.MT_WO_GET_LIST_ALL,
+            method: 'GET',
+            data: {
+                mtBaseId: mtBaseId,
+                nearlyHalfYear: new Date()
+            },
+            headers:{'Authorization': app.globalData.accessToken},
+            dataType: 'json',
+            success: (res) => {
+                console.log("getMtWoList = ", res)
+                let msg = ''
+                if(res.status != 200 ) {
+                    dd.alert({content: JSON.stringify(res)})
+                    return
+                }
+                if(res.data.code != 200) {
+                    dd.alert({content: res.data.msg})
+                    return
+                }
+                console.log("res="+JSON.stringify(res))
+                console.log("res.data.list.length="+res.data.list.length)
+                console.log("res.data.list.length>0 : "+(res.data.list.length>0))
+                if(res.data.list.length > 0){
+                    msg += '存在近半年的统计信息，共'+res.data.list.length+'条记录.'
+                }
+                msg += '是否确认删除？'
+
+                dd.confirm({
+                    title: '提示',
+                    content: msg,
+                    confirmButtonText: '删除',
+                    cancelButtonText: '取消',
+                    success: (result) => {
+                        console.log(result)
+                        if(!result.confirm){
+                            return
+                        }
+                        _self.deleteMtBaseById(mtBaseId)
+                    },
+                })
+            },
+            fail: (res) => {
+                console.log("httpRequestFail---",res)
+                dd.alert({content: JSON.stringify(res)});
+            },
+            complete: (res) => {
+                dd.hideLoading();
+            }
+            
+        });
+    },
+    deleteMtBaseById(mtBaseId) {
+        let _self = this
+        dd.httpRequest({
+            url: api.DELTEE_MT_BASE_INFO+'/'+mtBaseId,
+            method: 'GET',
+            data: {
+            },
+            headers:{'Authorization': app.globalData.accessToken},
+            dataType: 'json',
+            success: (res) => {
+                console.log("DELTEE_MT_BASE_INFO = ", res)
+                let msg = ''
+                if(res.status != 200 ) {
+                    dd.alert({content: JSON.stringify(res)})
+                    return
+                }
+                if(res.data.code != 200) {
+                    dd.alert({content: res.data.msg})
+                    return
+                }
+                if(res.data.list != null && res.data.list.length > 0){
+                    msg += '存在近半年的统计信息，共'+res.data.list.length+'条记录.'
+                }
+                msg += '是否确认删除？'
+
+                dd.showToast({
+                    type: 'success',
+                    content: '删除成功',
+                    success: (res) => {
+                        _self.refresh()
+                    }
+                })
+            },
+            fail: (res) => {
+                console.log("httpRequestFail---",res)
+                dd.alert({content: JSON.stringify(res)});
+            },
+            complete: (res) => {
+                dd.hideLoading();
+            }
+            
+        });
+    },
+    selectRow(e) {
+        console.log(e)
     },
     refresh: function() {
         this.getMtBaseList()
