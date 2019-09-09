@@ -20,8 +20,6 @@ Page({
         mtBaseList: [],
         mtBaseId: 0,
         mtWoTotalPrice: 0,
-        // mtBaseAmount: null,
-        // mtWoDesc: '',
     },
     onReady() {
         // 页面加载
@@ -49,33 +47,13 @@ Page({
             corpId: app.globalData.corpId
         })
     },
-    onHide() {
-        // 页面隐藏
-        // console.log('onHide..appr.js...........')
-        // let pages = getCurrentPages();
-        // console.log(pages.length)
-        // this.setData({
-        //     mtWoUseDate: '--请选择--',
-        //     mtWoTotalPrice: 0,
-        //     mtBaseId: 0,
-
-        //     priceUnit: 0,
-        //     priceUnitName: '',
-        //     mtBaseIdx: 0,
-        //     mtTypeName: '',
-        //     mtBaseAmount: null,
-        //     mtWoDesc: '',
-        // })
-        // this._initPriceUnit(this.data.mtBaseList[0])
-    },
     inputUseDate: function(e) {
         let _self = this
         console.log(e)
         let currentDate = new Date()
-        console.log(currentDate.Format(dateUtil.DATE_FORMAT_DAY))
         dd.datePicker({
             format: 'yyyy-MM-dd',
-            currentDate: currentDate.Format(dateUtil.DATE_FORMAT_DAY),
+            currentDate: currentDate.format(dateUtil.DATE_FORMAT_DAY),
             success: (res) => {
                 _self.setData({
                     mtWoUseDate: res.date
@@ -143,18 +121,8 @@ Page({
                             type: 'success',
                             content: "操作成功",
                             duration: 3000,
-                            success: () => { //redirectTo
+                            success: () => { //
                                 dd.navigateBack()
-                                // dd.navigateBack({
-                                //     url: '/pages/index',
-                                //     success: () => {
-                                //         var pages = getCurrentPages();//获取当前打开的页面栈，返回为数组，索引顺序为打开的顺序
-                                //         console.log('pages.length=', pages.length)
-                                //         var prePages = pages[pages.length - 1];//获取到上一个页面对象
-                                //         console.log(prePages)
-                                //         // prePages.refresh();//执行上一个页面对象中的刷新数据方法
-                                //     }
-                                // })
                             }
                         })
                     }else {
