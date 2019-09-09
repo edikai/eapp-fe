@@ -1,46 +1,43 @@
 import * as api from './../config/api.js'
 
 export function ddGetAuthCode(app) {
+    console.log('get authcode. res')
     let _self = this
-    let result = {}
     dd.getAuthCode({
         success:(res)=>{
             dd.httpRequest({
-            url: api.LOGIN,
-            method: 'POST',
-            async: false,
-            data: {
-                authCode: res.authCode
-            },
-            dataType: 'json',
-            headers: {'Authorization': app.globalData.accessToken},
-            success: (res) => {
-                console.log('success----',res)
-                if(res.status == 200 && res.data.code == 200){
-                    app.globalData.userId = res.data.userId
-                    app.globalData.userName = res.data.userName
-                    app.globalData.deptId = res.data.deptId
-                    // result = res.data
+                url: api.LOGIN,
+                method: 'POST',
+                async: false,
+                data: {
+                    authCode: res.authCode
+                },
+                dataType: 'json',
+                headers: {'Authorization': app.globalData.accessToken},
+                success: (res) => {
+                    console.log('success----',res)
+                    if(res.status == 200 && res.data.code == 200){
+                        app.globalData.userId = res.data.userId
+                        app.globalData.userName = res.data.userName
+                        app.globalData.deptId = res.data.deptId
+                    }
+                },
+                fail: (res) => {
+                    console.log("httpRequestFail---",res)
+                    dd.alert({content: JSON.stringify(res)});
+                },
+                complete: (res) => {
+                    dd.hideLoading();
                 }
-            },
-            fail: (res) => {
-                console.log("httpRequestFail---",res)
-                dd.alert({content: JSON.stringify(res)});
-            },
-            complete: (res) => {
-                dd.hideLoading();
-            }
             });
         },
         fail: (err)=>{
-            dd.alert({content: "step3"});
+            console.log("请先登录钉钉.")
             dd.alert({
-                content: JSON.stringify(err)
+                content: "getAuthCode error: " + JSON.stringify(err)
             })
         }
-        })
-
-    return result
+    })
 }
 
 export function getAccessToken(app) {

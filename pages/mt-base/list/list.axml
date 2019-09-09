@@ -14,7 +14,8 @@
     <view class="page-section-demo">
       <scroll-view scroll-y="{{true}}" 
           onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-        <view a:for="{{mtList}}" class="page-section-inline">
+        <view a:for="{{mtList}}" class="page-section-inline" onLongTap="deleteInit" data-mt-base-id="{{item.id}}" onTap="selectRow" 
+            hover-class="selected-row">
           <view id="blue" class="scroll-view-item first-item">{{item.mtTypeName}}</view>
           <view id="red"  class="scroll-view-item">{{item.mtTypePriceUnits}} {{priceUnitName}}/{{item.mtTypeMsUnits}}</view>
         </view>

@@ -28,7 +28,7 @@ Page({
             onItemTap: 'onGridItemTap',
             onChildItemTap: 'onChildItemTap',
             list: [{
-                    icon: '/image/view.png',
+                    icon: '/img/mt-s-tool.jpg',
                     title: '建材',
                     entitle: '建材维护',
                     subs: [
@@ -46,7 +46,7 @@ Page({
                         },
                     ],
                 }, {
-                    icon: '/image/basic.png',
+                    icon: '/img/appr.jpg',
                     title: '工单',
                     entitle: '审批工单',
                     subs: [
@@ -55,14 +55,9 @@ Page({
                             entitle: '建材购入工单申请',
                             page: 'appr',
                         },
-                        {
-                            title: '其他',
-                            entitle: 'Icon',
-                            page: 'icon',
-                        },
                     ],
                 }, {
-                    icon: '/image/form.png',
+                    icon: '/img/stats.jpg',
                     title: '统计',
                     entitle: '汇总统计',
                     subs: [

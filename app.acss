@@ -83,6 +83,11 @@ page {
   line-height: 1;
 }
 
+/* 选中行背景色 */
+.selected-row {
+    background-color: #49a9ee;
+}
+
 /* form表单 标题输入框样式 */
 .section{
   line-height: 60rpx;
